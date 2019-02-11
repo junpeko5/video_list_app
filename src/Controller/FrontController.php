@@ -23,7 +23,8 @@ class FrontController extends AbstractController
      */
     public function videoList($id, CategoryTreeFrontPage $categories)
     {
-        dump($categories);
+        $subcategories = $categories->buildTree($id);
+        dump($subcategories);
         return $this->render('front/video_list.html.twig', [
         ]);
     }
