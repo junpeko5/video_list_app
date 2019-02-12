@@ -6,7 +6,7 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-class AppExtentionExtension extends AbstractExtension
+class AppExtension extends AbstractExtension
 {
     public function getFilters(): array
     {
