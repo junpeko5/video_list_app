@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Utils\CategoryTreeAdminOptionList;
 use Symfony\Component\HttpFoundation\Response;
 use App\Utils\CategoryTreeAdminList;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -83,5 +84,14 @@ class AdminController extends AbstractController
     public function users()
     {
         return $this->render('admin/users.html.twig');
+    }
+
+    public function getAllCategories(CategoryTreeAdminOptionList $categories)
+    {
+        $categories->getCategoryList(($categories->buildTree()));
+        dump($categories);
+        return $this->render('admin/_all_categories.html.twig', [
+            'categories' => $categories
+        ]);
     }
 }
