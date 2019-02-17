@@ -69,6 +69,7 @@
         "symfony/maker-bundle": "^1.11",
         "symfony/phpunit-bridge": "4.2.*",
         "symfony/profiler-pack": "^1.0",
+        "symfony/test-pack": "^1.0",
         "symfony/var-dumper": "4.2.*"
     }
 }
