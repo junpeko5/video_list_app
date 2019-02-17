@@ -16,5 +16,6 @@ class CategoryTreeAdminOptionList extends CategoryTreeAbstract {
                 $repeat = $repeat - 2;
             }
         }
+        return $this->categoryList;
     }
 }

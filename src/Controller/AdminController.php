@@ -30,7 +30,8 @@ class AdminController extends AbstractController
     /**
      * @Route("/categories", name="categories", methods={"GET", "POST"})
      * @param CategoryTreeAdminList $categories
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function categories(CategoryTreeAdminList $categories, Request $request)
     {
@@ -47,7 +48,7 @@ class AdminController extends AbstractController
         {
             $is_invalid = ' is-invalid';
         }
-
+        dump($categories);
         return $this->render('admin/categories.html.twig', [
             'categories' => $categories->categoryList,
             'form' => $form->createView(),
