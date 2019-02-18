@@ -9,6 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class FrontController
+ * @package App\Controller
+ */
 class FrontController extends AbstractController
 {
     /**
@@ -20,8 +24,14 @@ class FrontController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/video-list/category/{categoryname},{id}/{page}", defaults={"page": "1"}, name="video_list")
+     * @param $id
+     * @param $page
+     * @param CategoryTreeFrontPage $categories
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function videoList($id, $page, CategoryTreeFrontPage $categories, Request $request)
     {
@@ -108,6 +118,9 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function mainCategories()
     {
         $categories = $this->getDoctrine()

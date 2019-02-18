@@ -39,7 +39,7 @@ class VideoRepository extends ServiceEntityRepository
         return $pagination;
     }
 
-    public function findByTitle(string $query, int $page, ?stirng $sort_method)
+    public function findByTitle(string $query, int $page, ?string $sort_method)
     {
         $sort_method = $sort_method != 'rating' ? $sort_method : 'ASC';
         $querybuilder = $this->createQueryBuilder('v');
