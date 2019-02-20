@@ -21,7 +21,7 @@ class UserFixtures extends Fixture
         foreach ($this->getUserData() as [$name, $last_name, $email, $password, $api_key, $roles]) {
             $user = new User();
             $user->setName($name);
-            $user->setLastName($name);
+            $user->setLastName($last_name);
             $user->setEmail($email);
             $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
             $user->setVimeoApiKey($api_key);
