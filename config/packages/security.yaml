@@ -24,12 +24,12 @@ security:
 
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
-            form_login: true
+            form_login:
                 check_path: login
                 login_path: login
-                csrf_token_genetator: security.csrf.token_manager
+                csrf_token_generator: security.csrf.token_manager
                 default_target_path: admin_main_page
-                username_paramenter: email
+                username_parameter: _email
             logout:
                 path: logout
                 target: main_page
