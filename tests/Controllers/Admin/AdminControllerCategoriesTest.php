@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use App\Entity\Category;
@@ -63,7 +63,7 @@ class AdminControllerCategoriesTest extends WebTestCase
 
     public function testEditCategory()
     {
-        $crawler = $this->client->request('GET', '/admin/su/edit_category/1');
+        $crawler = $this->client->request('GET', '/admin/su/edit-category/1');
         $form = $crawler->selectButton('Save')->form([
             'category[parent]' => 0,
             'category[name]' => 'Electronics 2'

@@ -57,7 +57,7 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/su/edit_category/{id}", name="edit_category", methods={"GET", "POST"})
+     * @Route("/su/edit-category/{id}", name="edit_category", methods={"GET", "POST"})
      * @param Category $category
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -107,7 +107,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/su/upload_video", name="upload_video")
+     * @Route("/su/upload-video", name="upload_video")
      */
     public function upload_video()
     {
@@ -115,7 +115,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/su/admin/users", name="users")
+     * @Route("/su/users", name="users")
      */
     public function users()
     {
