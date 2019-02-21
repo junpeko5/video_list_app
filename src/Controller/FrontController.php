@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\User;
 use App\Entity\Video;
+use App\Form\UserType;
 use App\Utils\CategoryTreeFrontPage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,15 +96,25 @@ class FrontController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register()
+    public function register(Request $request)
     {
+        $user = new User;
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            dd('register');
+        }
         return $this->render('front/register.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
 
     /**
      * @Route("/login", name="login")
+     * @param AuthenticationUtils $helper
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function login(AuthenticationUtils $helper)
     {

@@ -48,7 +48,6 @@ class AdminController extends AbstractController
         {
             $is_invalid = ' is-invalid';
         }
-        dump($categories);
         return $this->render('admin/categories.html.twig', [
             'categories' => $categories->categoryList,
             'form' => $form->createView(),
@@ -56,8 +55,12 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/su/edit_category/{id}", name="edit_category", methods={"GET", "POST"})
+     * @param Category $category
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editCategory(Category $category, Request $request)
     {
