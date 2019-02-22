@@ -14,6 +14,9 @@ use App\Entity\User;
  */
 class Video
 {
+    public const videoForNotLoggedIn = 113716040;
+    public const vimeoPath = 'https://player.vimeo.com/video/';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -54,6 +57,18 @@ class Video
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getVimeoId($user): ?string
+    {
+        if($user)
+        {
+            return $this->path;
+        }
+        else
+        {
+            return self::vimeoPath.self::videoForNotLoggedIn;
+        }
     }
 
     public function getTitle(): ?string
