@@ -78,7 +78,7 @@ class Comment
         }
         else
         {
-            $this->created_at = new \DateTime();
+            $this->created_at = new \DateTime;
         }
         return $this;
     }
