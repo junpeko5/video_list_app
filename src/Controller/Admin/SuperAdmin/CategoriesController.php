@@ -1,35 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin\SuperAdmin;
 
-use App\Entity\Category;
-use App\Entity\Video;
-use App\Form\CategoryType;
-use App\Utils\CategoryTreeAdminOptionList;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use App\Utils\CategoryTreeAdminList;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Category;
+use App\Utils\CategoryTreeAdminList;
+use App\Form\CategoryType;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
- * @Route("/admin")
- * Class AdminController
- * @package App\Controller
+ * @Route("/admin/su")
+ * Class CategoriesController
+ * @package App\Controller\Admin\SuperAdmin
  */
-class AdminController extends AbstractController
+class CategoriesController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_main_page")
-     */
-    public function index()
-    {
-        return $this->render('admin/my_profile.html.twig');
-    }
-
-
-    /**
-     * @Route("/su/categories", name="categories", methods={"GET", "POST"})
+     * @Route("/categories", name="categories", methods={"GET", "POST"})
      * @param CategoryTreeAdminList $categories
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -58,7 +48,7 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/su/edit-category/{id}", name="edit_category", methods={"GET", "POST"})
+     * @Route("/edit-category/{id}", name="edit_category", methods={"GET", "POST"})
      * @param Category $category
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -86,7 +76,7 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/su/delete-category/{id}", name="delete_category")
+     * @Route("/delete-category/{id}", name="delete_category")
      * @param Category $category
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -96,51 +86,6 @@ class AdminController extends AbstractController
         $entityManager->remove($category);
         $entityManager->flush();
         return $this->redirectToRoute('categories');
-    }
-
-
-    /**
-     * @Route("/videos", name="videos")
-     */
-    public function videos()
-    {
-        if ($this->isGranted('ROLE_ADMIN'))
-        {
-            $videos = $this->getDoctrine()->getRepository(Video::class)->findAll();
-        }
-        else
-        {
-            $videos = $this->getUser()->getLikedVideos();
-        }
-        return $this->render('admin/videos.html.twig', [
-            'videos' => $videos
-        ]);
-    }
-
-    /**
-     * @Route("/su/upload-video", name="upload_video")
-     */
-    public function upload_video()
-    {
-        return $this->render('admin/upload_video.html.twig');
-    }
-
-    /**
-     * @Route("/su/users", name="users")
-     */
-    public function users()
-    {
-        return $this->render('admin/users.html.twig');
-    }
-
-    public function getAllCategories(CategoryTreeAdminOptionList $categories, $editedCategory = null)
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $categories->getCategoryList(($categories->buildTree()));
-        return $this->render('admin/_all_categories.html.twig', [
-            'categories' => $categories,
-            'editedCategory' => $editedCategory,
-        ]);
     }
 
     private function saveCategory(Category $category, $form, Request $request)
