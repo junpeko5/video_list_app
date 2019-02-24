@@ -8,9 +8,7 @@ trait Rollback {
             'PHP_AUTH_USER' => 'jw@symf4.loc',
             'PHP_AUTH_PW' => 'passw',
         ]);
-        $this->client->disableReboot();
         $this->entityManager = $this->client->getContainer()->get('doctrine.orm.entity_manager');
-
     }
 
     public function tearDown()

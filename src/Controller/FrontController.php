@@ -63,7 +63,6 @@ class FrontController extends AbstractController
      */
     public function videoDetails(VideoRepository $repo, $video)
     {
-        dump($repo->videoDetails($video));
         return $this->render('front/video_details.html.twig', [
             'video' => $repo->videoDetails($video),
         ]);
@@ -195,6 +194,57 @@ class FrontController extends AbstractController
         }
 
         return $this->redirectToRoute('video_details', ['video' => $video->getId()]);
+    }
+
+    /**
+     * @Route("/video-list/{video}/like", name="like_video", methods={"POST"})
+     * @Route("/video-list/{video}/dislike", name="dislike_video", methods={"POST"})
+     * @Route("/video-list/{video}/unlike", name="undo_like_video", methods={"POST"})
+     * @Route("/video-list/{video}/undodislike", name="undo_dislike_video", methods={"POST"})
+     */
+    public function toggleLikesAjax(Video $video, Request $request)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+        $result = '';
+        switch ($request->get('_route'))
+        {
+            case 'like_video':
+                $result = $this->likeVideo($video);
+                break;
+            case 'dislike_video':
+                $result = $this->disLikeVideo($video);
+                break;
+            case 'undo_like_video':
+                $result = $this->undoLikeVideo($video);
+                break;
+            case 'undo_dislike_video':
+                $result = $this->undoDislikeVideo($video);
+                break;
+        }
+        return $this->json([
+                'action' => $result,
+                'id' => $video->getId()
+            ]);
+    }
+
+    private function likeVideo($video)
+    {
+        return 'liked';
+    }
+
+    private function disLikeVideo($video)
+    {
+        return 'disliked';
+    }
+
+    private function undoLikeVideo($video)
+    {
+        return 'undo liked';
+    }
+
+    private function undoDislikeVideo($video)
+    {
+        return 'undo disliked';
     }
 
 

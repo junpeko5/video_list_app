@@ -9,9 +9,11 @@ Encore
   .setPublicPath('/assets')
 
   // will create public/build/app.js and public/build/app.css
+  .addEntry('js/likes', './assets/js/likes.js')
   // .addEntry('app', './assets/js/app.js')
   .addStyleEntry('css/dashboard', './assets/css/dashboard.css')
   .addStyleEntry('css/login', './assets/css/login.css')
+  .addStyleEntry('css/likes', './assets/css/likes.css')
 
 
 // export the final configuration
