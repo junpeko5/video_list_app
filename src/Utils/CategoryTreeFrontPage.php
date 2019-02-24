@@ -71,7 +71,7 @@ class CategoryTreeFrontPage extends CategoryTreeAbstract {
         static $ids = [];
         foreach ($this->categoriesArrayFromDb as $val)
         {
-            if($val['parent_id'] === $parent)
+            if((int)$val['parent_id'] === $parent)
             {
                 $ids[] = $val['id'].',';
                 $this->getChildIds($val['id']);
