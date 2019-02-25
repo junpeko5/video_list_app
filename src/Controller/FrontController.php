@@ -109,8 +109,12 @@ class FrontController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new-comment/{video}", methods={"POST"}, name="new_comment")
+     * @param Video $video
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function newComment(Video $video, Request $request)
     {
