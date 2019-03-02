@@ -97,14 +97,7 @@ class FrontController extends AbstractController
     }
 
 
-    /**
-     * @Route("/pricing", name="pricing")
-     */
-    public function pricing()
-    {
-        return $this->render('front/pricing.html.twig', [
-        ]);
-    }
+
 
 
 
@@ -141,11 +134,15 @@ class FrontController extends AbstractController
         return $this->redirectToRoute('video_details', ['video' => $video->getId()]);
     }
 
+
     /**
      * @Route("/video-list/{video}/like", name="like_video", methods={"POST"})
      * @Route("/video-list/{video}/dislike", name="dislike_video", methods={"POST"})
      * @Route("/video-list/{video}/unlike", name="undo_like_video", methods={"POST"})
      * @Route("/video-list/{video}/undodislike", name="undo_dislike_video", methods={"POST"})
+     * @param Video $video
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function toggleLikesAjax(Video $video, Request $request)
     {

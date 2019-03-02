@@ -32,6 +32,11 @@ class Subscription
     {
         return self::$planDataNames;
     }
+
+    public static function getPlanDataPrices(): array
+    {
+        return self::$planDataPrices;
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
